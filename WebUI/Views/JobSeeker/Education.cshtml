@@ -1,0 +1,204 @@
+﻿@model Entities.Concrete.JobSeeker
+
+@{
+    Layout = "_LayoutJobSeeker";
+}
+
+<header class="main-header">
+    <nav class="navbar navbar-expand-md p-3 border border-dark mt-3 mb-auto">
+        <div class="container-fluid">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 me-5 text-dark text-decoration-none">
+                <img src="~/Screenshot 2021-07-03 at 01-25-22 Flow 1.png" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link link-dark" aria-current="page" href="#">why?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-dark" href="#">services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-dark" href="#" tabindex="-1" aria-disabled="true">find jobs</a>
+                    </li>
+                </ul>
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope mx-2" viewBox="0 0 16 16">
+                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
+                        </svg>
+                        <label>Welcome, @Model.FirstName</label>
+                    </a>
+                    <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="main-content border-start border-dark border-end">
+    <div class="row ">
+        <div class="col-4">
+        </div>
+        <div class="col-8">
+            <div class="container">
+                <nav class="nav mt-4">
+                    <a class="nav-link disabled">first step</a>
+                    <a class="nav-link disabled">general</a>
+                    <a class="nav-link ">education</a>
+                    <a class="nav-link disabled">experience</a>
+                </nav>
+
+                <div>
+                    <h1 class="fs-60">
+                        now your educational background
+                    </h1>
+                </div>
+                <nav class="nav mt-4">
+                    <button class="btn disabled">Education</button>
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        add new
+                    </button>
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-fullscreen">
+                            <div class="modal-content">
+                                <div class="main-body mx-5" style="height: -webkit-fill-available;">
+                                    <header class="modal-header border border-dark mx-5 mt-5 main-header">
+                                        <h3 class="modal-title" id="staticBackdropLabel">add / edit education.</h3>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </header>
+                                    <div class="main-content modal-body border-start border-end border-dark mx-5 p-0">
+                                        <div class="row h-100">
+                                            <div class="col-12 d-inline-flex">
+                                                <div id="educationList" class="col-4">
+                                                   @await Component.InvokeAsync("Educations", new {id = "b74ddd14-6340-4840-95c2-db12554843e5" }) 
+                                                </div>
+                                                <div class="col-8 v-divider px-2">
+                                                    <div class="mt-5">
+                                                        <div class="form-group mx-5">
+                                                            <h5>
+                                                                add education
+                                                            </h5>
+                                                        </div>
+                                                        <div class="form-group my-3 mx-5">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="isCurrent" id="isCurrent">
+                                                                <label class="form-check-label" for="isCurrent">I currently study here</label>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <div class="form-group my-3 mx-5">
+                                                            @Html.DropDownList("DegreeType", Html.GetEnumSelectList<Entities.Enum.DegreeType>(), "Degree Type", new { @class = "form-control", id = "degreeType" })
+                                                        </div>
+
+                                                        <div class="form-group my-3 mx-5">
+                                                            <input id="degreeName" type="text" placeholder="degree name" class="form-control" />
+                                                        </div>
+
+                                                        <div class="form-group my-3 mx-5">
+                                                            <input id="schoolName" type="text" placeholder="school name" class="form-control" />
+                                                        </div>
+
+                                                        <div class="form-group my-3 mx-5">
+                                                            <input id="country" type="text" placeholder="country" class="form-control" />
+                                                        </div>
+
+                                                        <div class="form-group my-3 mx-5">
+                                                            <input id="state" type="text" placeholder="state / province" class="form-control" />
+                                                        </div>
+
+                                                        <div class="form-group my-3 mx-5">
+                                                            <input id="city" type="text" placeholder="city" class="form-control" />
+                                                        </div>
+
+                                                        <div class="form-group my-3 mx-5">
+                                                            <input type="number" placeholder="start year" class="form-control" id="start-year" />
+                                                        </div>
+
+                                                        <div class="form-group my-3 mx-5">
+                                                            <input type="number" placeholder="completion year" class="form-control" id="completion-year" />
+                                                        </div>
+
+                                                        <div class="form-group my-3 mx-5">
+                                                            <button type="button" class="btn" id="addEducation" data-datac="">add/edit education</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <footer class="main-footer modal-footer border border-dark mx-5 mb-5 d-block">
+                                        <a asp-action="Education" class="btn float-end">
+                                            Done
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                            </svg>
+                                        </a>
+                                    </footer>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="row row-cols-1 row-cols-md-2 g-0">
+                    @foreach (var item in Model.Educations)
+                    {
+                        <div class="col">
+                            <div class="card bg-transparent">
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.DegreeName <label>(@Enum.GetName(item.DegreeType))</label></h5>
+                                    <p class="card-text text-black-50">
+                                        <label class="border-end border-dark pe-2">@Html.DisplayFor(modelItem => item.SchoolName)</label>
+                                        <label class="ps-2">@Html.DisplayFor(modelItem => item.State) , @Html.DisplayFor(modelItem => item.Country)</label>
+                                    </p>
+                                    <p class="card-text text-black-50">
+                                        <label>@Html.DisplayFor(modelItem => item.StartYear)</label>
+                                        -
+                                        <label>@Html.DisplayFor(modelItem => item.CompletionYear)</label>
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <nav class="nav mt-4">
+                    <button class="btn disabled">Skills</button>
+                    <button class="btn">add new</button>
+                    <button class="btn">edit</button>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="main-footer border border-dark p-3 mb-2">
+    <center>
+        &copy; wofran HR 2021. all rights reserved.
+        <a href="#" class="link-dark mx-1">privacy policy</a>
+        <a href="#" class="link-dark mx-1">impressum</a>
+    </center>
+</footer>
+
+@section Scripts{ 
+    <script>
+        
+    </script>
+}

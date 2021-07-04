@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Entities.Concrete.Education>
+
+@foreach (var item in Model)
+{
+    <div class="card bg-transparent border-0 border-bottom border-dark">
+        <div class="card-body">
+
+            <h5 class="card-title">@item.DegreeName <label>(@Enum.GetName(item.DegreeType))</label></h5>
+            <p class="card-text text-black-50">
+                <label class="border-end border-dark pe-2">@item.SchoolName</label>
+                <label class="ps-2">@item.City , @item.Country</label>
+            </p>
+            <p class="card-text text-black-50">
+                <label>@item.StartYear</label>
+                -
+                <label>@item.CompletionYear</label>
+            </p>
+            <div>
+                <div class="collapse editEducation" id="collapseExample">
+                    <button class="btn" data-datac="@item.ID">edit</button>
+                    <button class="btn">delete</button>
+                </div>
+                <a class="btn float-end" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+}
